@@ -1,0 +1,1 @@
+var e=`/assets/hero-sahara-BvpIiRGp.jpg`;export{e as t};
