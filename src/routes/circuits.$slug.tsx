@@ -3,18 +3,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowLeft,
   ArrowRight,
-  CalendarDays,
   Compass,
   MapPin,
   Mountain,
   Users,
-  Footprints,
   Backpack,
   CheckCircle2,
   Sparkles,
 } from "lucide-react";
 
-import { useI18n } from "@/lib/i18n";
+import { useI18n, type Lang } from "@/lib/i18n";
 import { seo } from "@/lib/seo";
 
 import heroSahara from "@/assets/hero-sahara.jpg";
@@ -596,6 +594,172 @@ const circuitTranslations: Record<string, Partial<Circuit>> = {
   },
 };
 
+
+// Complete editorial translations for every published circuit. Keeping these
+// records separate from the French source prevents partial-language fallbacks.
+const circuitTranslationsByLang: Partial<Record<Lang, Record<string, Partial<Circuit>>>> = {
+  de: {
+    "jbel-siroua": {
+      title: "Jbel Siroua – Wandern im Land des Safrans",
+      tagline: "Unser verborgenes Bergparadies empfängt Sie wie zu Hause",
+      duration: "9 Tage", walking: "5,5 Wandertage", period: "Frühling und Herbst", level: "Leicht",
+      dailyWalking: "Etwa 5 bis 6 Stunden pro Tag", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch, Agadir oder Ouarzazate",
+      description: "Von Taliouine aus entdecken Sie das Siroua-Massiv, eine farbenprächtige Vulkanlandschaft mit Amazigh-Dörfern und bewirtschafteten Terrassen. Vom Gipfel auf 3.305 Metern reicht der Blick vom Hohen Atlas bis zu den Toren der Sahara. Diese Reise verbindet eindrucksvolle Landschaften, Kulturerbe, Begegnungen und ländliche Traditionen. Im Frühling erblühen die Mandelbäume in den Tälern; im Oktober ernten die Familien Safran, das kostbare rote Gold der Region, das Ende des Monats beim Festival von Taliouine gefeiert wird.",
+      highlights: ["Die Vulkanlandschaften und Dörfer des Siroua entdecken", "Panoramablicke zwischen Hohem Atlas und Sahara genießen", "Safranproduzenten treffen und den lokalen Safran kennenlernen", "Im Frühling zwischen blühenden Mandelbäumen wandern", "Die Höhen des Siroua auf 3.305 Metern erreichen"],
+      extra: "Reisedaten, Dauer und Route können an Ihre Wünsche angepasst werden. Auch eine Themenwanderung rund um den Safran ist möglich."
+    },
+    sahara: {
+      title: "Sahara – Eine sanfte Wüstenauszeit", tagline: "Entdecken Sie die weite Wüstenwelt unseres Kamels Zafrani",
+      duration: "9 bis 12 Tage", walking: "5 bis 6 Wandertage", period: "Oktober bis Mitte April", level: "Leicht", dailyWalking: "Etwa 5 bis 6 Stunden pro Tag", transport: "Kamele transportieren das Gepäck", supervision: "Reiseleitung und lokales Team mit Koch und Kameltreibern", arrival: "Ouarzazate oder Marrakesch",
+      description: "Diese Reise verbindet Wanderungen in der Wüste mit der Entdeckung des Kulturerbes im Drâa-Tal. Nicht sportliche Leistung steht im Mittelpunkt, sondern das intensive Erleben der weiten Sahara. Kamele tragen Ihr Gepäck, damit Sie unbeschwert wandern können. Unterwegs entdecken Sie Tierspuren und erfahren, wie sich Natur und Menschen an die Trockenheit angepasst haben. Am Abend kehren Sie zum Lager zurück, genießen eine Tajine und erleben die ruhige Atmosphäre der Sahara unter einem Sternenhimmel.",
+      highlights: ["Im ruhigen Rhythmus der Wüste wandern", "Tierspuren und die Landschaften der Sahara entdecken", "Nomadische Gemeinschaften und ihre Lebensweise kennenlernen", "Unter dem Sternenhimmel im Biwak übernachten", "Die Oasen und das Kulturerbe des Drâa-Tals erkunden"],
+      extra: "Diese Reise lässt sich mit einem Besuch der Drâa-Oasen oder einer Wanderung im Jbel Saghro zu einer etwa 15-tägigen Tour verbinden. Termine, Ankunftsort, Dauer und Route sind anpassbar."
+    },
+    "jbel-saghro": {
+      title: "Jbel Saghro – Ein nomadisches Abenteuer", tagline: "Kennen Sie die Geschichte der Liebenden Ali und Eto?",
+      duration: "8 oder 10 Tage", walking: "5 Wandertage", period: "Oktober bis November sowie Februar bis Mai", level: "Wanderreise", dailyWalking: "Je nach Etappe und gewählter Route", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Ouarzazate oder Marrakesch",
+      description: "Zwischen den Tälern des Dadès und des Drâa zeigt das Saghro-Massiv eine fast mondartige Welt aus Felstürmen, Schluchten, Hochebenen und weiten Horizonten. Die Region ist auch ein Gebiet der saisonalen Wanderweidewirtschaft der Aït Atta; ihre Herden und Lager gehören zum Landschaftsbild. Mit einem lokalen Team folgen Sie dem Rhythmus des nomadischen Lebens, entdecken Wasserstellen und schattige Palmenhaine und erreichen schließlich die Hochplateaus. Der Aufstieg zum Berg Kouaouch auf 2.662 Metern belohnt mit einem Blick vom Hohen Atlas bis zum Jbel Bani.",
+      highlights: ["Felslandschaften und mondähnliche Hochebenen durchqueren", "Die Traditionen der saisonalen Wanderweidewirtschaft der Aït Atta kennenlernen", "Durch Schluchten, Oasen und vulkanisch geprägte Landschaften wandern", "Den Berg Kouaouch auf 2.662 Metern besteigen", "Weite Landschaften in aller Ruhe genießen"],
+      extra: "Der Saghro lässt sich mit einer Wanderung in der Sahara zu einer etwa 15-tägigen Reise verbinden. Route, Termine, Dauer und Schwierigkeitsgrad können an Ihre Gruppe angepasst werden."
+    },
+    "jbel-mgoun": {
+      title: "Jbel Mgoun – Durchquerung des Zentralen Hohen Atlas", tagline: "Vom glücklichen Tal ins Tal der Rosen: Farben, Begegnungen und Emotionen",
+      duration: "12 Tage", walking: "9 Wandertage", period: "Juni bis Oktober", level: "Für erfahrene Wanderer", dailyWalking: "Etwa 6 bis 7 Stunden pro Tag", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch oder Ouarzazate",
+      description: "Diese Trekkingtour führt durch den Zentralen Hohen Atlas rund um den Jbel Mgoun, dessen Gipfel 4.068 Meter erreicht und damit der zweithöchste Nordafrikas ist. Der optionale Gipfelaufstieg ist für gut vorbereitete Wanderer geeignet. Die Route wechselt zwischen grünen Tälern im Norden, hoch gelegenen Weiden, farbigen Felsformationen und beeindruckenden Schluchten, die teilweise durch das Wasser durchquert werden. Weiter südlich weichen die Felslandschaften großen Oasen. Dörfer und Begegnungen entlang des Mgoun-Flusses verleihen der Tour eine menschliche Dimension; sie endet im Dadès-Tal zwischen Kasbahs und Palmenhainen.",
+      highlights: ["Täler und Hochweiden des Zentralen Hohen Atlas erkunden", "Die spektakulären Mgoun-Schluchten durchqueren", "Amazigh-Dörfer und ihre Anbauflächen entdecken", "Den optionalen Aufstieg zum Mgoun auf 4.068 Metern unternehmen", "Die Reise im Dadès-Tal zwischen Kasbahs ausklingen lassen"],
+      extra: "Der Zentrale Hohe Atlas bietet viele Möglichkeiten: Aït Bougmez, Tessaout, Zawyat Ahansal, Imilchil, das Tal der Rosen, Dadès und Todra. Kürzere Wanderungen, längere Durchquerungen, Familienreisen oder anspruchsvolle Treks lassen sich individuell planen."
+    },
+    "tizi-n-test": {
+      title: "Tizi N’Test – Im Land der jahrhundertealten Walnussbäume", tagline: "Von der Moschee von Tinmal zum Techka-Plateau: ein ursprüngliches Tal entdecken",
+      duration: "8 bis 9 Tage", walking: "5 Wandertage", period: "Mitte Mai bis Oktober", level: "Leicht bis mittelschwer", dailyWalking: "Etwa 5 bis 7 Stunden pro Tag", transport: "Lastmaultiere und Esel", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch oder Agadir",
+      description: "Im Westen des Hohen Atlas, abseits der meistbesuchten Routen, überragt die Region Tizi N’Test die Souss-Ebene. Ockerfarbene und violette Felsen an den Südhängen bilden einen Kontrast zu den grünen Tälern im Norden. Die Wege folgen dem Fluss N’Fiss, führen durch den Duft von Thuja und Wacholder, vorbei an steinernen Amazigh-Dörfern und landwirtschaftlichen Terrassen. Jahrhundertealte Walnussbäume, Atlas-Pistazien und Sommerweiden säumen den Weg zum Techka-Plateau. Unterwegs können auch zwei Gipfel über 3.000 Meter bestiegen werden.",
+      highlights: ["Die historische Moschee von Tinmal entdecken", "Entlang des Flusses N’Fiss wandern", "Steindörfer und landwirtschaftliche Terrassen durchqueren", "Walnussbäume und Atlas-Pistazien bewundern", "Die Weiden des Techka-Plateaus erreichen"],
+      extra: "Die Reise kann durch einen Aufenthalt an der Atlantikküste ergänzt werden. Etappen und Dauer lassen sich an Ihre Wünsche anpassen."
+    },
+    "randonnee-cotiere": {
+      title: "Küstenwanderung entlang des Atlantiks", tagline: "Auf den Spuren des Eleonorenfalken von Essaouira nach Imsouane",
+      duration: "9 Tage", walking: "6 Wandertage", period: "Oktober bis November sowie Februar bis Mai", level: "Küstenwanderung", dailyWalking: "Je nach Etappe und gewählter Route", transport: "Kamele für das Gepäck; ein Reitesel für Kinder ist möglich", supervision: "Reiseleitung und lokales Team mit Koch und Kameltreibern", arrival: "Marrakesch oder Agadir",
+      description: "Zwischen Essaouira und Imsouane folgen Sie der Atlantikküste durch Fischerdörfer, wilde Strände und Klippen mit weitem Blick auf den Ozean. Gehen Sie barfuß über den Sand und genießen Sie am Lagerplatz eine Fisch-Tajine unter dem Sternenhimmel. Naturfreunde können Küstenvögel und Basstölpel beobachten; je nach Jahreszeit ist auch der Eleonorenfalke zu sehen. Im Frühling färben Blumen den Weg, während Arganbäume die Landschaft prägen. In Essaouira empfängt Sie das alte Mogador hinter seinen weißen Stadtmauern. Die Begegnungen mit dem lokalen Team der Aït Haha verleihen der Reise eine besondere menschliche Note.",
+      highlights: ["Zwischen wilden Stränden, Buchten und Klippen wandern", "Fischerdörfer an der Atlantikküste entdecken", "Je nach Jahreszeit Küstenvögel beobachten", "Essaouira und seine weißen Stadtmauern besuchen", "Abende und Mahlzeiten im Biwak teilen"],
+      extra: "Diese Wanderung lässt sich mit einem Reiturlaub verbinden. Termine und Etappen können angepasst werden; die Reise eignet sich auch für Familien."
+    },
+    tafraoute: {
+      title: "Anti-Atlas bei Tafraoute – Das Blut des Drachen", tagline: "Auf den Spuren der Antilopen von den Bergen bis zu den Oasen",
+      duration: "9 Tage", walking: "5,5 Wandertage mit festem Standort", period: "Herbst bis Frühlingsbeginn, idealerweise Januar und Februar", level: "Leicht", dailyWalking: "Etwa 5 bis 7 Stunden pro Tag", transport: "Begleitfahrzeug; Unterkunft in einer Herberge", supervision: "Reiseleitung und lokales Team je nach Programm", arrival: "Agadir; auch Marrakesch oder Ouarzazate möglich",
+      description: "Rund um Tafraoute zeigt der Anti-Atlas eine Palette aus rosa, grünen und weißen Felsen, abgerundeten Granitblöcken und Quarzitbergen. Die Wanderungen führen ins Ameln-Tal am Fuß des Jbel El Kest, dessen Gipfel erreicht werden kann, und weiter zu Schluchten und schönen Dörfern mit traditionellen rosa-weißen Häusern. Die Oase Aït Mansour bildet einen üppig grünen Kontrast. An einem versteckten Ort wächst der Ajgal-Drachenbaum, auch „Drachenblut“ genannt. Alte Wege und teilweise aufgegebene Felder überlassen der Natur zunehmend Raum. Mit etwas Glück lassen sich Cuvier-Gazellen, Wildschweine oder seltener Mähnenschafe beobachten.",
+      highlights: ["Granitfelsen und farbige Landschaften entdecken", "Das Ameln-Tal und den Jbel El Kest erkunden", "Durch Schluchten und traditionelle Dörfer wandern", "Die grüne Oase Aït Mansour genießen", "Den Ajgal-Drachenbaum und die lokale Pflanzenwelt kennenlernen"],
+      extra: "Die Wanderungen können sternförmig von einem festen Standort aus organisiert und an Ihr Tempo angepasst werden. Die Reise eignet sich auch für Familien."
+    },
+    toubkal: {
+      title: "Toubkal-Rundtour – Amazigh-Täler des Hohen Atlas", tagline: "Von Tal zu Tal über Pässe, die den Himmel berühren",
+      duration: "8 bis 9 Tage", walking: "6 bis 7 Wandertage", period: "Juni bis Oktober", level: "Für erfahrene Wanderer", dailyWalking: "Etwa 6 bis 7 Stunden pro Tag", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch",
+      description: "Diese Trekkingtour richtet sich an Wanderer, die Berge, lange Wandertage und wilde Landschaften lieben. Alte Maultierpfade verbinden Amazigh-Dörfer und überqueren hoch gelegene Pässe, oft fernab der meistbegangenen Wege. Höhepunkt ist die Besteigung des Jbel Toubkal mit 4.168 Metern. Während der gesamten Durchquerung bilden bewohnte Täler und alpine Landschaften einen eindrucksvollen Kontrast zum lebhaften Marrakesch mit seinen Palästen und dem Platz Jemaa el-Fna.",
+      highlights: ["Die Amazigh-Täler des Hohen Atlas durchqueren", "Pässe mit weiten Panoramablicken überschreiten", "Bergpfade und Bergdörfer entdecken", "Den Gipfel des Jbel Toubkal auf 4.168 Metern anstreben", "Wilde Landschaften und lokale Begegnungen verbinden"],
+      extra: "In der Region sind auch kürzere Wanderungen von 2 bis 4 Tagen möglich. Je nach Jahreszeit und Bedingungen eignet sich das Gebiet zum Skitourengehen. Ein individuelles Programm kann erstellt werden."
+    },
+    "yagour-zat": {
+      title: "Yagour-Plateau und Zat-Tal – Ein jahrtausendealter Weg", tagline: "Felsgravuren des Hohen Atlas: ein unschätzbarer Schatz",
+      duration: "9 Tage", walking: "7-tägige Durchquerung oder 6-tägige Rundtour", period: "Frühling bis Herbst", level: "Leicht", dailyWalking: "Etwa 5 bis 6 Stunden pro Tag", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch",
+      description: "In der Nähe von Marrakesch liegt das weite Yagour-Plateau am Fuß des Hohen Atlas, seit jeher ein Gebiet der Weidewirtschaft. Hier befindet sich eine der bedeutendsten Sammlungen von Felskunst des Massivs: In den rosa Sandstein gravierte Rinder mit gebogenen Hörnern, Sonnenräder, Waffen und menschliche Figuren zeugen von Praktiken aus der späten Jungsteinzeit. Sie können eine siebentägige Durchquerung von Tachdirt zum Tizi-N’Tichka-Pass über die Täler von Tachdirt, Ounila und Zat wählen oder eine sechstägige Rundtour ab dem Ounila-Tal. Wer die Reise verlängern möchte, kann einen zusätzlichen Tag für den heiligen Gipfel Meltsene auf 3.595 Metern einplanen.",
+      highlights: ["Das Weideplateau von Yagour erkunden", "Prähistorische Felsgravuren entdecken", "Täler und Amazigh-Dörfer durchqueren", "Zwischen Durchquerung und Rundtour wählen", "Optional den Meltsene auf 3.595 Metern besteigen"],
+      extra: "Das Yagour-Plateau lässt sich auch auf einer 3- bis 4-tägigen Reise ab Marrakesch entdecken. Die Etappen sind anpassbar; die Tour kann auch für Familien geeignet sein."
+    },
+    "tessaout-ait-bouli": {
+      title: "Ounila, Tessaout und Aït Bouli – Amazigh-Landschaften", tagline: "Bunte Berge und herrliche Dörfer des Atlas",
+      duration: "9 Tage", walking: "6-tägige Durchquerung", period: "Frühling bis Herbst", level: "Mittelschwer", dailyWalking: "Etwa 6 bis 7 Stunden pro Tag", transport: "Lastmaultiere", supervision: "Marokkanischer Bergführer, Koch und Maultiertreiber", arrival: "Marrakesch",
+      description: "Diese Wanderung verbindet das Ounila-Tal mit Tessaout und anschließend Aït Bouli im Herzen des Hohen Atlas. Die Route führt durch lebendige grüne Täler, traditionelle Dörfer wie Megdez und hoch gelegene Weideflächen. Der blaue Tamda-See liegt unter den Bergen von Anghomar. Der Weg von Tessaout nach Aït Bouli zählt zu den schönsten Routen des Massivs: Ein Lager in einem unberührten Tal, ein Panoramaweg unterhalb des Jbel-Rat-Kamms und ständig wechselnde Ausblicke begleiten die Wanderung. In Aït Bouli bilden roter Sandstein, grüne Terrassen und Spuren alter Felskunst einen eindrucksvollen Kontrast.",
+      highlights: ["Die Täler von Ounila, Tessaout und Aït Bouli durchqueren", "Traditionelle Dörfer wie Megdez entdecken", "Den blauen Tamda-See und die Anghomar-Berge bewundern", "Auf einem Panoramaweg unterhalb des Jbel Rat wandern", "Landschaften und Felskunstspuren von Aït Bouli entdecken"],
+      extra: "Im Zentralen Hohen Atlas lassen sich abwechslungsreiche Routen rund um Aït Bougmez, Tessaout, Zawyat Ahansal, das Tal der Rosen und Ounila gestalten. Familienreisen, längere Durchquerungen und anspruchsvolle Treks sind individuell planbar."
+    },
+    "oued-noun": {
+      title: "Atlantische Sahara – Oued Noun", tagline: "Wüste, Oasen und Ozean: eine Reise in die saharauische Welt",
+      duration: "11 Tage", walking: "4 Wandertage", period: "September bis April", level: "Leicht", dailyWalking: "Etwa 5 bis 6 Stunden pro Tag", transport: "Kamele und Begleitfahrzeug", supervision: "Reiseleitung und lokales Team mit Koch und Kameltreibern", arrival: "Agadir oder Marrakesch",
+      description: "Im äußersten Süden Marokkos entdecken Sie auf dieser besonderen Reise die saharische Welt dort, wo sie auf den Atlantik trifft. Wüste, Oasen, Berge und Ozean bilden eine überraschend vielfältige Landschaft, geprägt von der Hassani-Kultur und den Gesängen der Guedra. Unterwegs lernen Sie die Pflanzen- und Tierwelt dieser Übergangsregion kennen, begegnen Nomaden mit Kamelen und Ziegen sowie Oasenbauern und Kunsthandwerkern. Farbenfrohe Stoffe, das Teeritual und die Gastfreundschaft unter Zelten verleihen der Reise eine starke kulturelle Dimension. Die viertägige Wanderung führt unter anderem zur Oase Tighermt bei Guelmim, zu warmen und kalten Quellen und über weite Hochebenen am mineralischen Anti-Atlas. Zum Abschluss erwartet Sie die große Plage Blanche am Atlantik.",
+      highlights: ["Das Zusammentreffen von Wüste, Oasen und Ozean erleben", "Die Hassani-Kultur und das Teeritual entdecken", "Nomaden, Bauern und Kunsthandwerker treffen", "In der Nähe der Oase Tighermt und mineralischer Hochebenen wandern", "Die Reise am Atlantik an der Plage Blanche beenden"],
+      extra: "Auf der Rückfahrt kann eine Rundfahrt mit dem Geländewagen organisiert werden, um den Anti-Atlas und die Region Tafraoute weiter zu erkunden."
+    }
+  },
+  it: {
+    "jbel-siroua": {
+      title: "Jbel Siroua, trekking nella terra dello zafferano", tagline: "Nel nostro angolo segreto di montagna sarete accolti come a casa",
+      duration: "9 giorni", walking: "5 giorni e mezzo di trekking", period: "Primavera e autunno", level: "Facile", dailyWalking: "Circa 5–6 ore al giorno", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech, Agadir o Ouarzazate",
+      description: "Partendo da Taliouine, scopri il massiccio del Siroua, una catena vulcanica dai colori intensi, punteggiata di villaggi amazigh e terrazzamenti coltivati. Dalle sue alture, la vetta del Siroua, a 3.305 metri, apre lo sguardo dall’Alto Atlante fino alle porte del Sahara. Il viaggio unisce paesaggi sorprendenti, patrimonio, incontri e tradizioni rurali. In primavera i mandorli in fiore illuminano le vallate; a ottobre le famiglie raccolgono lo zafferano, il prezioso oro rosso della regione, celebrato durante il festival di Taliouine verso la fine del mese.",
+      highlights: ["Scoprire i paesaggi vulcanici e i villaggi del Siroua", "Ammirare panorami tra Alto Atlante e Sahara", "Incontrare i produttori e conoscere lo zafferano locale", "Camminare tra i mandorli in fiore in primavera", "Raggiungere le alture del Siroua a 3.305 metri"],
+      extra: "Date, durata e itinerario possono essere adattati al tuo progetto. È possibile organizzare anche un trekking tematico dedicato allo zafferano."
+    },
+    sahara: {
+      title: "Sahara, un’immersione dolce", tagline: "Scopri il vasto mondo del deserto insieme al nostro dromedario Zafrani",
+      duration: "Da 9 a 12 giorni", walking: "5–6 giorni di cammino", period: "Da ottobre a metà aprile", level: "Facile", dailyWalking: "Circa 5–6 ore al giorno", transport: "I dromedari trasportano i bagagli", supervision: "Guida e squadra locale con cuoco e cammellieri", arrival: "Ouarzazate o Marrakech",
+      description: "Questo viaggio unisce le passeggiate nel deserto alla scoperta del patrimonio della valle del Drâa. L’obiettivo non è la prestazione sportiva, ma vivere pienamente i grandi spazi sahariani. I dromedari trasportano i bagagli, così potrai camminare leggero. Lungo il percorso osserverai le tracce degli animali e scoprirai come la natura e gli abitanti si adattano all’aridità. Alla fine della giornata si rientra al campo per gustare un tajine e condividere i ritmi tranquilli del Sahara sotto un cielo stellato.",
+      highlights: ["Camminare al ritmo tranquillo del deserto", "Osservare le tracce della fauna e i paesaggi sahariani", "Incontrare le comunità nomadi e conoscere il loro stile di vita", "Dormire in bivacco sotto le stelle", "Esplorare le oasi e il patrimonio della valle del Drâa"],
+      extra: "Il viaggio può essere abbinato alla visita delle oasi del Drâa o a un trekking sul Jbel Saghro, per creare un itinerario di circa 15 giorni. Date, città di arrivo, durata e percorso sono personalizzabili."
+    },
+    "jbel-saghro": {
+      title: "Jbel Saghro, un’avventura nomade", tagline: "Conosci la storia dei due innamorati Ali ed Eto?",
+      duration: "8 o 10 giorni", walking: "5 giorni di cammino", period: "Ottobre–novembre e febbraio–maggio", level: "Trekking", dailyWalking: "In base alla tappa e all’itinerario scelto", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Ouarzazate o Marrakech",
+      description: "Tra le valli del Dadès e del Drâa, il massiccio del Saghro rivela un mondo quasi lunare fatto di guglie rocciose, canyon, altopiani e orizzonti aperti. È anche un territorio di transumanza per gli Aït Atta, le cui greggi e i cui accampamenti fanno parte del paesaggio. Accompagnato da una squadra locale, seguirai il ritmo della vita nomade, cercando sorgenti e angoli ombreggiati tra le palme prima di raggiungere gli altopiani. La salita al monte Kouaouch, a 2.662 metri, regala una vista che spazia dall’Alto Atlante al Jbel Bani.",
+      highlights: ["Attraversare paesaggi rocciosi e altopiani lunari", "Scoprire le tradizioni di transumanza degli Aït Atta", "Camminare tra canyon, oasi e rilievi vulcanici", "Salire sul monte Kouaouch a 2.662 metri", "Godersi grandi spazi e paesaggi contemplativi"],
+      extra: "Il Saghro può essere abbinato a un trekking nel Sahara per un viaggio di circa 15 giorni. Date, durata, percorso e livello possono essere adattati al gruppo."
+    },
+    "jbel-mgoun": {
+      title: "Jbel Mgoun, attraversata dell’Alto Atlante centrale", tagline: "Dalla Valle Felice alla Valle delle Rose: emozioni, colori e incontri",
+      duration: "12 giorni", walking: "9 giorni di trekking", period: "Da giugno a ottobre", level: "Per escursionisti esperti", dailyWalking: "Circa 6–7 ore al giorno", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech o Ouarzazate",
+      description: "Questo trekking attraversa l’Alto Atlante centrale intorno al Jbel Mgoun, la cui vetta raggiunge i 4.068 metri, la seconda più alta del Nord Africa. La salita, facoltativa, è adatta a escursionisti ben preparati. Il percorso alterna vallate verdi a nord, pascoli d’alta quota, rocce dai colori vivaci e gole spettacolari, alcune delle quali si attraversano nell’acqua. Più a sud, i paesaggi minerali lasciano spazio a grandi oasi. I villaggi e gli incontri lungo l’oued Mgoun danno al viaggio una forte dimensione umana, fino alla valle del Dadès, tra kasbah e palmeti.",
+      highlights: ["Esplorare le valli e i pascoli dell’Alto Atlante centrale", "Attraversare le spettacolari gole del Mgoun", "Scoprire i villaggi amazigh e le loro coltivazioni", "Valutare la salita facoltativa al Mgoun, a 4.068 metri", "Concludere nella valle del Dadès tra le kasbah"],
+      extra: "L’Alto Atlante centrale offre molte possibilità: Aït Bougmez, Tessaout, Zawyat Ahansal, Imilchil, Valle delle Rose, Dadès e Todra. Si possono creare itinerari brevi, attraversate più lunghe, viaggi per famiglie o trekking più impegnativi."
+    },
+    "tizi-n-test": {
+      title: "Tizi N’Test, la terra dei noci secolari", tagline: "Dalla moschea di Tinmal all’altopiano del Techka, alla scoperta di una valle preservata",
+      duration: "8–9 giorni", walking: "5 giorni di cammino", period: "Da metà maggio a ottobre", level: "Da facile a moderato", dailyWalking: "Circa 5–7 ore al giorno", transport: "Muli e asini da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech o Agadir",
+      description: "A ovest dell’Alto Atlante, lontano dagli itinerari più frequentati, la regione del Tizi N’Test domina la pianura del Souss. Le rocce ocra e viola del versante meridionale contrastano con le verdi vallate del nord. I sentieri seguono l’oued N’Fiss, tra i profumi di tuia e ginepro, attraversano villaggi amazigh in pietra e costeggiano terrazzamenti agricoli. Noci secolari, pistacchi dell’Atlante e pascoli estivi accompagnano il cammino fino all’altopiano del Techka. L’itinerario permette anche di salire su due cime oltre i 3.000 metri.",
+      highlights: ["Scoprire la storica moschea di Tinmal", "Camminare lungo l’oued N’Fiss", "Attraversare villaggi in pietra e terrazzamenti agricoli", "Ammirare noci e pistacchi dell’Atlante", "Raggiungere i pascoli dell’altopiano del Techka"],
+      extra: "Il circuito può essere completato con un soggiorno sulla costa atlantica. Le tappe e la durata possono essere adattate ai tuoi desideri."
+    },
+    "randonnee-cotiere": {
+      title: "Trekking costiero lungo il vento dell’Atlantico", tagline: "Sulle tracce del falco della Regina, da Essaouira a Imsouane",
+      duration: "9 giorni", walking: "6 giorni di cammino", period: "Ottobre–novembre e febbraio–maggio", level: "Trekking costiero", dailyWalking: "In base alla tappa e all’itinerario scelto", transport: "Dromedari per i bagagli; possibile un asino da sella per i bambini", supervision: "Guida e squadra locale con cuoco e cammellieri", arrival: "Marrakech o Agadir",
+      description: "Tra Essaouira e Imsouane, segui la costa atlantica attraverso villaggi di pescatori, spiagge selvagge e scogliere aperte sull’oceano. Cammina a piedi nudi sulla sabbia e condividi un tajine di pesce al bivacco sotto le stelle. Gli amanti della natura potranno osservare gli uccelli costieri e le sule; secondo la stagione è possibile avvistare anche il falco della Regina. In primavera i fiori colorano il sentiero e gli alberi di argan punteggiano il paesaggio. A Essaouira, l’antica Mogador ti accoglie dietro le sue mura bianche. Gli incontri con la squadra locale Aït Haha rendono il viaggio ancora più umano.",
+      highlights: ["Camminare tra spiagge selvagge, calette e scogliere", "Scoprire i villaggi di pescatori della costa atlantica", "Osservare gli uccelli del litorale secondo la stagione", "Visitare Essaouira e le sue mura bianche", "Condividere serate e pasti al bivacco"],
+      extra: "Questo trekking può essere abbinato a un soggiorno a cavallo. Date e tappe sono adattabili e il programma è adatto anche alle famiglie."
+    },
+    tafraoute: {
+      title: "Anti-Atlante di Tafraoute, il sangue del drago", tagline: "Sulle tracce delle antilopi, dalle montagne alle oasi",
+      duration: "9 giorni", walking: "5 giorni e mezzo di trekking con base fissa", period: "Dall’autunno all’inizio della primavera, idealmente a gennaio e febbraio", level: "Facile", dailyWalking: "Circa 5–7 ore al giorno", transport: "Veicolo di assistenza; pernottamento in struttura locale", supervision: "Guida e squadra locale secondo il programma", arrival: "Agadir; possibili anche Marrakech o Ouarzazate",
+      description: "Intorno a Tafraoute, l’Anti-Atlante offre una tavolozza di rocce rosa, verdi e bianche, blocchi di granito arrotondati e rilievi di quarzite. Le escursioni conducono nella valle di Ameln, ai piedi del Jbel El Kest, e poi verso gole e splendidi villaggi dalle case tradizionali rosa e bianche. L’oasi di Aït Mansour offre un contrasto verde e rigoglioso. In un luogo appartato cresce il drago ajgal, chiamato anche “sangue del drago”. Gli antichi sentieri e i campi in parte abbandonati lasciano sempre più spazio alla natura; nella regione si possono talvolta osservare la gazzella di Cuvier, il cinghiale o, più raramente, il muflone a criniera.",
+      highlights: ["Scoprire i blocchi di granito e i rilievi colorati", "Esplorare la valle di Ameln e il Jbel El Kest", "Camminare tra gole e villaggi tradizionali", "Godersi la verde oasi di Aït Mansour", "Conoscere il drago ajgal e la flora locale"],
+      extra: "Le escursioni possono essere organizzate a raggiera e adattate al tuo ritmo. Il programma è adatto anche alle famiglie."
+    },
+    toubkal: {
+      title: "Anello del Toubkal, valli amazigh dell’Alto Atlante", tagline: "Da una valle all’altra, oltre i passi che sfiorano il cielo",
+      duration: "8–9 giorni", walking: "6–7 giorni di cammino", period: "Da giugno a ottobre", level: "Per escursionisti esperti", dailyWalking: "Circa 6–7 ore al giorno", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech",
+      description: "Questo trekking è pensato per chi ama la montagna, le lunghe giornate a piedi e i paesaggi selvaggi. Antichi sentieri per muli collegano i villaggi amazigh e superano passi d’alta quota, spesso lontani dai percorsi più frequentati. Il momento culminante è la salita al Jbel Toubkal, che raggiunge i 4.168 metri. Durante il viaggio, le valli abitate e i paesaggi d’alta montagna creano un contrasto suggestivo con l’energia di Marrakech, i suoi palazzi e piazza Jemaa el-Fna.",
+      highlights: ["Attraversare le valli amazigh dell’Alto Atlante", "Superare passi con ampi panorami", "Scoprire sentieri e villaggi di montagna", "Puntare alla vetta del Jbel Toubkal, a 4.168 metri", "Unire paesaggi selvaggi e incontri locali"],
+      extra: "Nella regione sono possibili anche trekking più brevi di 2–4 giorni. In base alla stagione e alle condizioni, la zona si presta anche allo sci alpinismo. È possibile preparare un programma personalizzato."
+    },
+    "yagour-zat": {
+      title: "Altopiano dello Yagour e valle dello Zat, un cammino millenario", tagline: "Le incisioni rupestri dell’Alto Atlante, un tesoro inestimabile",
+      duration: "9 giorni", walking: "Attraversata di 7 giorni o anello di 6 giorni", period: "Dalla primavera all’autunno", level: "Facile", dailyWalking: "Circa 5–6 ore al giorno", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech",
+      description: "Vicino a Marrakech, il vasto altopiano dello Yagour si trova ai piedi dell’Alto Atlante ed è da sempre un territorio pastorale. Ospita uno dei complessi di arte rupestre più ricchi del massiccio, inciso nell’arenaria rosa: bovini dalle corna ricurve, ruote solari, armi e figure umane testimoniano pratiche risalenti alla fine del Neolitico. Puoi scegliere un’attraversata di sette giorni da Tachdirt al passo del Tizi N’Tichka, passando per le valli di Tachdirt, Ounila e Zat, oppure un anello di sei giorni con partenza dalla valle dell’Ounila. Per prolungare l’avventura è possibile aggiungere una giornata per salire sulla vetta sacra del Meltsene, a 3.595 metri.",
+      highlights: ["Esplorare l’altopiano pastorale dello Yagour", "Scoprire le incisioni rupestri preistoriche", "Attraversare valli e villaggi amazigh", "Scegliere tra attraversata e itinerario ad anello", "Valutare la salita facoltativa al Meltsene, a 3.595 metri"],
+      extra: "L’altopiano dello Yagour può essere visitato anche con un viaggio di 3–4 giorni da Marrakech. Le tappe sono adattabili e il percorso può essere adatto alle famiglie."
+    },
+    "tessaout-ait-bouli": {
+      title: "Ounila, Tessaout e Aït Bouli, terre amazigh", tagline: "Montagne multicolori e splendidi villaggi dell’Atlante",
+      duration: "9 giorni", walking: "Attraversata di 6 giorni", period: "Dalla primavera all’autunno", level: "Moderato", dailyWalking: "Circa 6–7 ore al giorno", transport: "Muli da soma", supervision: "Guida marocchina, cuoco e mulattieri", arrival: "Marrakech",
+      description: "Questo trekking collega la valle dell’Ounila alla Tessaout e poi ad Aït Bouli, nel cuore dell’Alto Atlante. Il percorso attraversa vallate verdi e vivaci, villaggi tradizionali come Megdez e pascoli d’alta quota. Il lago blu di Tamda si trova ai piedi delle montagne di Anghomar. Il sentiero tra Tessaout e Aït Bouli è uno dei più belli del massiccio: bivacchi in una valle preservata, un percorso panoramico sotto la cresta del Jbel Rat e vedute sempre diverse accompagnano il cammino. Ad Aït Bouli, le arenarie rosse contrastano con le terrazze verdi e le antiche tracce di arte rupestre.",
+      highlights: ["Attraversare le valli dell’Ounila, della Tessaout e di Aït Bouli", "Scoprire villaggi tradizionali come Megdez", "Ammirare il lago blu di Tamda e le montagne di Anghomar", "Camminare sul sentiero panoramico sotto il Jbel Rat", "Scoprire i paesaggi e le tracce di arte rupestre di Aït Bouli"],
+      extra: "L’Alto Atlante centrale offre itinerari vari intorno ad Aït Bougmez, Tessaout, Zawyat Ahansal, Valle delle Rose e Ounila. Si possono organizzare viaggi per famiglie, attraversate più lunghe e trekking sportivi su misura."
+    },
+    "oued-noun": {
+      title: "Sahara atlantico, Oued Noun", tagline: "Deserto, oasi e oceano: un viaggio nel mondo saharawi",
+      duration: "11 giorni", walking: "4 giorni di cammino", period: "Da settembre ad aprile", level: "Facile", dailyWalking: "Circa 5–6 ore al giorno", transport: "Dromedari e veicolo di assistenza", supervision: "Guida e squadra locale con cuoco e cammellieri", arrival: "Agadir o Marrakech",
+      description: "Nell’estremo sud del Marocco, questo viaggio speciale fa scoprire il mondo sahariano nel punto in cui incontra l’Atlantico. Deserto, oasi, montagne e oceano compongono un paesaggio sorprendentemente vario, animato dalla cultura hassani e dai canti della guedra. Lungo il percorso scoprirai flora e fauna della zona di transizione, incontrerai nomadi con dromedari e capre, coltivatori delle oasi e artigiani. Tessuti colorati, il rituale del tè e l’accoglienza sotto le tende danno al viaggio una forte dimensione culturale. Il trekking di quattro giorni conduce all’oasi di Tighermt, vicino a Guelmim, a sorgenti calde e fredde e a vasti altopiani delimitati dai rilievi minerali dell’Anti-Atlante. Il viaggio termina sulla grande Plage Blanche, davanti alle onde dell’oceano.",
+      highlights: ["Scoprire l’incontro tra deserto, oasi e oceano", "Conoscere la cultura hassani e il rituale del tè", "Incontrare nomadi, coltivatori e artigiani", "Camminare vicino all’oasi di Tighermt e agli altopiani minerali", "Concludere il viaggio sull’Atlantico, alla Plage Blanche"],
+      extra: "Al ritorno è possibile organizzare un percorso in fuoristrada 4×4 per scoprire meglio l’Anti-Atlante e la regione di Tafraoute."
+    }
+  }
+};
+
 type InfoItemProps = {
   label: string;
   value?: string | null;
@@ -616,7 +780,7 @@ function InfoItem({ label, value }: InfoItemProps) {
 
 function CircuitDetailPage() {
   const { slug } = Route.useParams();
-  const { lang } = useI18n();
+  const { lang, t } = useI18n();
   const isEnglish = lang === "en";
 
   const originalCircuit = circuits.find((item) => item.slug === slug);
@@ -624,7 +788,7 @@ function CircuitDetailPage() {
   const circuit = originalCircuit
     ? {
         ...originalCircuit,
-        ...(isEnglish ? circuitTranslations[originalCircuit.slug] : {}),
+        ...(circuitTranslationsByLang[lang]?.[originalCircuit.slug] ?? (isEnglish ? circuitTranslations[originalCircuit.slug] : {})),
       }
     : undefined;
 
@@ -634,42 +798,24 @@ function CircuitDetailPage() {
         <div className="mx-auto max-w-3xl text-center">
           <Mountain className="mx-auto mb-5 h-12 w-12 text-primary" />
           <h1 className="mb-4 text-3xl font-bold">
-            {isEnglish ? "Circuit not found" : "Circuit introuvable"}
+            {t("common.circuitNotFound")}
           </h1>
           <p className="mb-8 text-muted-foreground">
-            {isEnglish
-              ? "This circuit is unavailable or the link is no longer valid."
-              : "Ce circuit n'est pas disponible ou le lien n'est plus valide."}
+            {t("common.circuitNotFoundDescription")}
           </p>
           <Link
             to="/circuits"
             className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-medium text-primary-foreground transition hover:opacity-90"
           >
             <ArrowLeft className="h-4 w-4" />
-            {isEnglish ? "Explore all our circuits" : "Découvrir tous nos circuits"}
+            {t("cta.viewAllCircuits")}
           </Link>
         </div>
       </main>
     );
   }
 
-  const facts = [
-    {
-      icon: CalendarDays,
-      label: isEnglish ? "Duration" : "Durée",
-      value: circuit.duration,
-    },
-    {
-      icon: Footprints,
-      label: isEnglish ? "Hiking" : "Marche",
-      value: circuit.walking,
-    },
-    {
-      icon: Compass,
-      label: isEnglish ? "Difficulty" : "Niveau",
-      value: circuit.level,
-    },
-  ];
+
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -687,13 +833,13 @@ function CircuitDetailPage() {
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/40 bg-black/20 px-4 py-2 text-sm text-white backdrop-blur-sm transition hover:bg-black/40"
           >
             <ArrowLeft className="h-4 w-4" />
-            {isEnglish ? "All circuits" : "Tous les circuits"}
+            {t("cta.viewAllCircuits")}
           </Link>
 
           <div className="max-w-4xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm">
               <Mountain className="h-4 w-4" />
-              {isEnglish ? "Travel in Morocco" : "Voyage au Maroc"}
+              {t("circuits.detailLabel")}
             </div>
 
             <h1 className="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
@@ -731,14 +877,12 @@ function CircuitDetailPage() {
               <div className="mb-3 flex items-center gap-2 text-primary">
                 <Sparkles className="h-5 w-5" />
                 <span className="text-sm font-semibold uppercase tracking-[0.16em]">
-                  {isEnglish ? "The spirit of the journey" : "L'esprit du voyage"}
+                  {t("circuits.spirit")}
                 </span>
               </div>
 
               <h2 className="mb-5 text-2xl font-bold md:text-3xl">
-                {isEnglish
-                  ? "An adventure in the heart of Morocco"
-                  : "Une aventure au cœur du Maroc"}
+                {t("circuits.aboutTitle")}
               </h2>
 
               <p className="text-base leading-8 text-muted-foreground md:text-lg">
@@ -750,12 +894,12 @@ function CircuitDetailPage() {
               <div className="mb-3 flex items-center gap-2 text-primary">
                 <Mountain className="h-5 w-5" />
                 <span className="text-sm font-semibold uppercase tracking-[0.16em]">
-                  {isEnglish ? "Discover" : "À découvrir"}
+                  {t("circuits.highlightsLabel")}
                 </span>
               </div>
 
               <h2 className="mb-6 text-2xl font-bold md:text-3xl">
-                {isEnglish ? "Trip highlights" : "Les temps forts du circuit"}
+                {t("circuits.highlightsTitle")}
               </h2>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -776,9 +920,7 @@ function CircuitDetailPage() {
                 <div className="mb-3 flex items-center gap-2">
                   <Compass className="h-5 w-5 text-primary" />
                   <h2 className="text-xl font-bold">
-                    {isEnglish
-                      ? "A journey tailored to you"
-                      : "Un voyage qui s'adapte à vous"}
+                    {t("circuits.adaptTitle")}
                   </h2>
                 </div>
 
@@ -793,9 +935,7 @@ function CircuitDetailPage() {
                     rel="noreferrer"
                     className="mt-4 inline-flex items-center gap-2 font-medium text-primary underline-offset-4 hover:underline"
                   >
-                    {isEnglish
-                      ? "Discover the saffron-themed journey"
-                      : "Découvrir le voyage thématique autour du safran"}
+                    {t("circuits.saffronLink")}
                     <ArrowRight className="h-4 w-4" />
                   </a>
                 )}
@@ -809,45 +949,45 @@ function CircuitDetailPage() {
                 <div className="mb-2 flex items-center gap-2">
                   <MapPin className="h-5 w-5" />
                   <span className="text-sm font-medium">
-                    {isEnglish ? "Practical information" : "Informations pratiques"}
+                    {t("common.practicalInfo")}
                   </span>
                 </div>
                 <h2 className="text-xl font-bold">
-                  {isEnglish ? "Plan your adventure" : "Préparez votre aventure"}
+                  {t("circuits.practicalTitle")}
                 </h2>
               </div>
 
               <div className="px-6 py-2">
                 <InfoItem
-                  label={isEnglish ? "Total duration" : "Durée totale"}
+                  label={t("circuits.totalDuration")}
                   value={circuit.duration}
                 />
                 <InfoItem
-                  label={isEnglish ? "Hiking duration" : "Durée de marche"}
+                  label={t("circuits.walkingDuration")}
                   value={circuit.walking}
                 />
                 <InfoItem
-                  label={isEnglish ? "Best time to visit" : "Période conseillée"}
+                  label={t("circuits.bestPeriod")}
                   value={circuit.period}
                 />
                 <InfoItem
-                  label={isEnglish ? "Difficulty" : "Niveau"}
+                  label={t("common.level")}
                   value={circuit.level}
                 />
                 <InfoItem
-                  label={isEnglish ? "Daily walking" : "Marche quotidienne"}
+                  label={t("circuits.dailyWalking")}
                   value={circuit.dailyWalking}
                 />
                 <InfoItem
-                  label={isEnglish ? "Luggage transport" : "Portage"}
+                  label={t("circuits.transport")}
                   value={circuit.transport}
                 />
                 <InfoItem
-                  label={isEnglish ? "Local team" : "Encadrement"}
+                  label={t("circuits.supervision")}
                   value={circuit.supervision}
                 />
                 <InfoItem
-                  label={isEnglish ? "Arrival city" : "Ville d'arrivée"}
+                  label={t("circuits.arrival")}
                   value={circuit.arrival}
                 />
               </div>
@@ -856,9 +996,7 @@ function CircuitDetailPage() {
                 <div className="mx-6 mb-4 flex items-center gap-2 rounded-xl bg-primary/5 p-3 text-sm">
                   <Users className="h-5 w-5 shrink-0 text-primary" />
                   <span>
-                    {isEnglish
-                      ? "This trip can be adapted for families"
-                      : "Possibilité d'adapter le circuit aux familles"}
+                    {t("circuits.family")}
                   </span>
                 </div>
               )}
@@ -868,14 +1006,12 @@ function CircuitDetailPage() {
                   to="/contact"
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-5 py-3.5 text-center font-semibold text-primary-foreground transition hover:opacity-90"
                 >
-                  {isEnglish ? "Discuss your trip" : "Parler de votre projet"}
+                  {t("cta.talkProject")}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
 
                 <p className="mt-3 text-center text-xs leading-5 text-muted-foreground">
-                  {isEnglish
-                    ? "Dates, stages and duration can be adjusted to suit your plans."
-                    : "Dates, étapes et durée peuvent être étudiées selon votre projet."}
+                  {t("circuits.adaptNote")}
                 </p>
               </div>
             </div>
@@ -884,19 +1020,17 @@ function CircuitDetailPage() {
               <div className="mb-2 flex items-center gap-2">
                 <Backpack className="h-5 w-5 text-primary" />
                 <h3 className="font-semibold">
-                  {isEnglish ? "Need advice?" : "Besoin de conseils ?"}
+                  {t("circuits.adviceTitle")}
                 </h3>
               </div>
               <p className="text-sm leading-6 text-muted-foreground">
-                {isEnglish
-                  ? "Contact us to discuss your hiking experience, preferred dates and the kind of trip that suits you."
-                  : "Contactez-nous pour échanger sur votre expérience de randonnée, vos dates et le type de voyage qui vous correspond."}
+                {t("circuits.adviceText")}
               </p>
               <Link
                 to="/contact"
                 className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
               >
-                {isEnglish ? "Contact us" : "Nous contacter"}
+                {t("cta.contact")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
@@ -915,19 +1049,15 @@ function CircuitDetailPage() {
 
         <div className="mx-auto max-w-4xl px-5 text-center">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
-            {isEnglish ? "Your next adventure" : "Votre prochaine aventure"}
+            {t("common.yourNextAdventure")}
           </p>
 
           <h2 className="text-3xl font-bold text-white md:text-4xl">
-            {isEnglish
-              ? "Shall we plan this journey together?"
-              : "Et si nous préparions ce voyage ensemble ?"}
+            {t("circuits.bottomTitle")}
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/85">
-            {isEnglish
-              ? "Tell us what you have in mind. We can discuss the route, dates and ways to tailor your trip."
-              : "Parlez-nous de vos envies. Nous pourrons échanger sur le parcours, les dates et les possibilités d'adaptation de votre circuit."}
+            {t("circuits.bottomText")}
           </p>
 
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -935,7 +1065,7 @@ function CircuitDetailPage() {
               to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition hover:opacity-90"
             >
-              {isEnglish ? "Request information" : "Demander des informations"}
+              {t("cta.getInformation")}
               <ArrowRight className="h-4 w-4" />
             </Link>
 
@@ -943,7 +1073,7 @@ function CircuitDetailPage() {
               to="/circuits"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/50 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10"
             >
-              {isEnglish ? "Explore other circuits" : "Voir les autres circuits"}
+              {t("cta.otherCircuits")}
             </Link>
           </div>
         </div>
